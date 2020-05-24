@@ -15,22 +15,23 @@
       <li class="nav-item" routerLinkActive="active" >
         <a class="nav-link"[routerLink]="['/members']">Memebers</a>
       </li>
-      <li class="nav-item pointer" routerLinkActive="active" >
-        <a class="nav-link" (click)="logOut()" >Log Out</a>
-      </li>
     </ul>
 
 
-    <div *ngIf="loggedIn()" class="dropdown" dropdown (click)="false">
-      <a href="" class="dropdown-toggle text-light" dropdownToggle>
-          Welcome {{authService.decodedToken?.unique_name | titlecase}}
+    <div *ngIf="loggedIn()" class="btn-group" dropdown>
+      <a id="button-basic" dropdownToggle  class="dropdown-toggle text-light"
+              aria-controls="dropdown-basic">
+              Welcome {{authService.decodedToken?.unique_name | titlecase}} <span class="caret"></span>
       </a>
-      <div class="dropdown-menu" *dropdownMenu >
-      <a class="dropdown-menu"><i class="fa fa-user"></i>Edit Profile</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-menu"><i class="fa fa-sign-out"></i> Log Out</a>
-     </div>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-basic">
+      <li role="menuitem" [routerLink]="['/member/edit']"><a class="dropdown-item">Edit Profile</a>
+      </li>
+      <li class="divider dropdown-divider"></li>
+      <li role="menuitem"><a class="dropdown-item" href="#" (click)="logOut()">Log Out</a></li>
+      </ul>
     </div>
+
 
     <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="loginUser()">
       <input [(ngModel)]="model.username" name="username" required class="form-control mr-sm-2" type="text" placeholder="Username">
