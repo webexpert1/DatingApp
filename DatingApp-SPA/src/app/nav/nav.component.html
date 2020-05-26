@@ -19,7 +19,10 @@
 
 
     <div *ngIf="loggedIn()" class="btn-group" dropdown>
-      <a id="button-basic" dropdownToggle  class="dropdown-toggle text-light"
+      <span class="mr-1">
+        <img src="{{photoUrl}}" alt="">
+      </span>
+      <a id="button-basic" dropdownToggle  class="dropdown-toggle text-light mt-2"
               aria-controls="dropdown-basic">
               Welcome {{authService.decodedToken?.unique_name | titlecase}} <span class="caret"></span>
       </a>
